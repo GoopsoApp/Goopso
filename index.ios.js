@@ -7,47 +7,73 @@
 import React, { Component } from 'react';
 import {
   AppRegistry,
-  StyleSheet,
-  Text,
-  View
+  Navigator,
+  AsyncStorage
 } from 'react-native';
 
 export default class Project extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isLoading: true,
+      isLogin: false,
+    };
+  }
+  // async getUserData() {
+  //     let context = this;
+  //     let value = await AsyncStorage.getItem('UserData');
+  //       return new Promise(function (fulfill, reject){
+  //         // console.log('UserData', value)
+  //         UserData = JSON.parse(value);
+  //         fulfill();
+  //     });
+  // }
+
+  // componentWillMount() {
+  //     let context = this;
+  //     context.getUserData().then(()=>{
+  //       // console.log('UserData', UserData)
+  //       context.setState({
+  //         isLoading: false,
+  //         isLogin: UserData ? true : false
+  //       });
+
+  //     });
+  // }
+
   render() {
+    let context = this;
+    //if(context.state.isLoading)
+    //  return <Loader/>
+
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
-        </Text>
-      </View>
+      <Navigator
+        style={{flex: 1}}
+        initialRoute={{
+          //component: context.renderComponent(),
+          component:require('./components/StartPage')
+        }}
+      renderScene={this.renderScene}
+      configureScene={(route, routeStack) =>
+        Navigator.SceneConfigs.PushFromRight} />
     );
   }
-}
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
+  renderScene(route, navigator) {
+      let Component = route.component;
+      return <Component navigator={navigator} route={route} data={route.passProps}/>;
+  }
+
+  // renderComponent(){
+
+  //   let context = this;
+
+  //   if(context.state.isLogin)
+  //     return MainPage;
+  //   else
+  //     return SignIn;
+
+  // }
+}
 
 AppRegistry.registerComponent('Project', () => Project);
