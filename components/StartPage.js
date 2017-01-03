@@ -19,6 +19,12 @@ class StartPage extends Component {
       component:require('./Login')
     })
   }
+  signUp(){
+    let context = this;
+    context.props.navigator.push({
+      component:require('./signUp/EnterUsername')
+    })
+  }
   render() {
     return (
       <View style={styles.container}>
@@ -28,8 +34,8 @@ class StartPage extends Component {
         <TouchableOpacity onPress={()=>this.logIn()} style={{flex:1,alignItems:'center',justifyContent:'center',marginVertical:10,marginHorizontal:10,backgroundColor:'#ffffff',borderWidth:1,borderColor:'transparent',borderRadius:5,}}>
           <Text style={{color:'#5a0fb4', fontWeight:'700',fontSize:18}}>LOG IN</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={{flex:1,alignItems:'center',justifyContent:'center',marginVertical:10,marginHorizontal:10,backgroundColor:'transparent',borderWidth:2,borderColor:'#ffffff',borderRadius:5,}}>
-          <Text style={{color:'#ffffff', fontWeight:'700',fontSize:18}}>Sign Up</Text>
+        <TouchableOpacity onPress={()=>this.signUp()} style={{flex:1,alignItems:'center',justifyContent:'center',marginVertical:10,marginHorizontal:10,backgroundColor:'transparent',borderWidth:2,borderColor:'#ffffff',borderRadius:5,}}>
+          <Text style={{color:'#ffffff', fontWeight:'700',fontSize:18}}>SIGN UP</Text>
         </TouchableOpacity>
       </View>
     );
