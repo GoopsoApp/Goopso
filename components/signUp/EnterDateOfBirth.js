@@ -36,7 +36,7 @@ class EnterDateOfBirth extends Component {
   continue(){
     let context = this;
     context.props.navigator.push({
-      component:require('./EnterEmail')
+      component:require('./EnterUsername')
     })
   }
   render() {
@@ -73,7 +73,7 @@ class EnterDateOfBirth extends Component {
               <Text style={{fontSize:16,color:'#ffffff',textAlign:'center'}}>{ context.state.date.getDate() }/{ context.state.date.getMonth()+1 }/{ context.state.date.getFullYear() }</Text>
             </View>
           </TouchableOpacity>
-          <TouchableOpacity onPress={()=>context.continue()} style={{alignItems:'center',justifyContent:'center',marginVertical:10,marginHorizontal:10,padding:15,backgroundColor:'#ffffff',borderWidth:1,borderColor:'transparent',borderRadius:5,}}>
+          <TouchableOpacity onPress={()=>context.continue()} style={{alignItems:'center',justifyContent:'center',marginTop:(Screen.height/100)*15,marginHorizontal:10,padding:15,backgroundColor:'#ffffff',borderWidth:1,borderColor:'transparent',borderRadius:5,}}>
             <Text style={{color:'#5a0fb4', fontWeight:'700',fontSize:18}}>CONTINUE</Text>
           </TouchableOpacity>
         </View>

@@ -14,28 +14,21 @@ let Screen = require('Dimensions').get('window'),
     back_icon = require('image!back_icon'),
     NavigationBar = require('react-native-navbar');
 
-class EnterEmail extends Component {
+class EnterPassword extends Component {
   constructor(props){
     super(props);
     this.state={
-      email:'',
+      password:'',
     }
-  }
-  validateEmail = (email) => {
-    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(email);
   }
   submit(){
     let context = this;
-    if(context.state.email == '' && !context.state.email.trim()){
-      alert('Please enter your email')
-    }
-    else if (!context.validateEmail(context.state.email)){
-      alert('Please enter a valid email address')
+    if(context.state.password.length < 8){
+      alert('Your password should be atleast 8 characters')
     }
     else{
       context.props.navigator.push({
-      component: require('./CameraSnap')
+      component: require('./EnterPhoneNumber')
     })
     }
   }
@@ -51,18 +44,18 @@ class EnterEmail extends Component {
             style = {{backgroundColor:'#5a0fb4'}} />
         <View style={styles.container}>
           <View style={{alignItems:'center', marginTop:(Screen.height/100)*5}}>
-            <Text style={{fontSize:22,fontWeight:'700',color:'#ffffff'}}>Enter Email</Text>
+            <Text style={{fontSize:22,fontWeight:'700',color:'#ffffff'}}>Enter Password</Text>
           </View>
           <View style={{marginHorizontal:(Screen.width/100)*10,marginTop:(Screen.height/100)*6}}>
-            <Text style={{color:'#b7b7b7',fontSize:18,fontWeight:'600'}}>Email</Text>
+            <Text style={{color:'#b7b7b7',fontSize:18,fontWeight:'600'}}>Password</Text>
           </View>
           <View style={styles.inputContainer}>
             <TextInput
               autoCapitalize='none'
               autoCorrect={false}
-              keyboardType='email-address'
+              password={true}
               style={{flex:1,fontSize:16,fontWeight:'700',color:'#ffffff'}}
-              onChangeText={(email) => context.setState({email})}
+              onChangeText={(password) => context.setState({password})}
             />
           </View>
           <TouchableOpacity onPress={()=>context.submit()} style={{marginTop:(Screen.height/100)*15,alignItems:'center',justifyContent:'center',marginVertical:10,marginHorizontal:10,padding:15,backgroundColor:'#ffffff',borderWidth:1,borderColor:'transparent',borderRadius:5,}}>
@@ -88,4 +81,4 @@ const styles = StyleSheet.create({
   }
 });
 
-module.exports = EnterEmail;
+module.exports = EnterPassword;

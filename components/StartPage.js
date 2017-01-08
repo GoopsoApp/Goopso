@@ -22,7 +22,7 @@ class StartPage extends Component {
   signUp(){
     let context = this;
     context.props.navigator.push({
-      component:require('./signUp/EnterUsername')
+      component:require('./signUp/EnterFnameLname')
     })
   }
   render() {
